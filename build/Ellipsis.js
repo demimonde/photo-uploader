@@ -1,6 +1,7 @@
-const { Component } = require('preact');
+import { h } from 'preact'
+import { Component } from 'preact'
 
-               class Ellipsis extends Component {
+export default class Ellipsis extends Component {
   constructor() {
     super()
     this.state = {
@@ -20,8 +21,6 @@ const { Component } = require('preact');
   render() {
     const t = '.'.repeat(this.state.count)
     const i = '.'.repeat(3-this.state.count)
-    return <span>{t}<span style="opacity:0">{i}</span></span>
+    return   h('span',{},t,h('span',{'style':"opacity:0"},i))
   }
 }
-
-module.exports = Ellipsis

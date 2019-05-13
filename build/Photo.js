@@ -1,8 +1,9 @@
+import { h } from 'preact'
 /* eslint-env browser */
-const { Component } = require('preact');
+import { Component } from 'preact'
 // import { A } from '../../../frontend/components/Bootstrap'
-const { handleBinaryFile } = require('@metadata/exif');
-const Ellipsis = require('./Ellipsis');
+import { handleBinaryFile } from '@metadata/exif'
+import Ellipsis from './Ellipsis'
 
 const getCanvas = (width, height, img) => {
   let canvas = document.createElement('canvas')
@@ -140,46 +141,46 @@ class Photo extends Component {
     } catch (er) {
       // ok
     }
-    return (<Copy error={error} hasInput={hasInput} processing={processing} src={src} uploaded={uploaded}>
-      <div className="Image">
-        {!src &&
-          <span className="PreviewLoadingSpan">
-            Загрузка превью...
-          </span>}
-        <img src={src} />
-        <span className="ImageInfo" style="top:0;left:0;">
-          {name}
-          {date && <br/>}
-          {date}
-        </span>
-        <span className="ImageInfo CloseSpan" onClick={onRemove}>✕</span>
-        {!result && !error && progress === null &&
-          <BottomLeft style="background:transparent; padding-left:0;">
-            <a className="btn btn-light btn-sm" onClick={this.uploadHandle}>Загрузить</a>
-          </BottomLeft>
-        }
-        {progress !== null && progress != 100 && <BottomLeft>
-          <progress max={100} value={progress}/>
-        </BottomLeft>}
-        {processing && <BottomLeft>
-          Выполняется обработка<Ellipsis />
-          <div className="spinner-border text-primary" role="status">
-            <span className="sr-only">Loading...</span>
-          </div>
-        </BottomLeft>}
-        {error && <p className="ImageInfo PhotoError">
-          Ошибка: {error}
-        </p>}
-        {error && <a href="#" className="btn btn-danger btn-sm" onClick={this.uploadHandle} style="position:absolute;right:0;bottom:0;">Загрузить снова</a>}
-        {result &&
-          <p className="ImageInfo GalleryLink">
-            <a rel="noopener noreferrer" target="_blank" href={result}>Ссылка</a>
-          </p>
-        }
-        {hasInput && photoId &&
-          <input type="hidden" name={photoIdName} value={photoId}/>}
-      </div>
-    </Copy>)
+    return (h(Copy,{error:error, hasInput:hasInput, processing:processing, src:src, uploaded:uploaded},
+      h('div',{'className':"Image"},
+        !src &&
+          h('span',{'className':"PreviewLoadingSpan"},
+            `Загрузка превью...`
+          ),
+        h('img',{'src':src}),
+        h('span',{'className':"ImageInfo",'style':"top:0;left:0;"},
+          name,
+          date && h('br'),
+          date,
+        ),
+        h('span',{'onClick':onRemove,'className':"ImageInfo CloseSpan"},`✕`),
+        !result && !error && progress === null &&
+          h(BottomLeft,{style:"background:transparent; padding-left:0;"},
+            h('a',{'onClick':this.uploadHandle,'className':"btn btn-light btn-sm"},`Загрузить`),
+          )
+        ,
+        progress !== null && progress != 100 && h(BottomLeft,{},
+          h('progress',{'max':100,'value':progress}),
+        ),
+        processing && h(BottomLeft,{},
+          `Выполняется обработка`,h(Ellipsis),
+          h('div',{'className':"spinner-border text-primary",'role':"status"},
+            h('span',{'className':"sr-only"},`Loading...`),
+          ),
+        ),
+        error && h('p',{'className':"ImageInfo PhotoError"},
+          `Ошибка: `,error,
+        ),
+        error && h('a',{'onClick':this.uploadHandle,'href':"#",'className':"btn btn-danger btn-sm",'style':"position:absolute;right:0;bottom:0;"},`Загрузить снова`),
+        result &&
+          h('p',{'className':"ImageInfo GalleryLink"},
+            h('a',{'href':result,'rel':"noopener noreferrer",'target':"_blank"},`Ссылка`),
+          )
+        ,
+        hasInput && photoId &&
+          h('input',{'name':photoIdName,'type':"hidden",'value':photoId}),
+      ),
+    ))
   }
 }
 
@@ -196,15 +197,15 @@ const Copy = ({ children, processing, error, hasInput, uploaded, src }) => {
   }
   const cl = ['ImageCopy', src ? undefined : 'PreviewLoading', `PhotoUploader${className}`].filter(Boolean).join(' ')
 
-  return (<div className={cl}>
-    {children}
-  </div>)
+  return ( h('div',{'className':cl},
+    children,
+  ))
 }
 
 const BottomLeft = ({ children, style = '', className = 'ImageInfo' }) => {
-  return (<span className={className} style={`bottom:0;left:0;${style}`}>
-    {children}
-  </span>)
+  return ( h('span',{'className':className, 'style':`bottom:0;left:0;${style}`},
+    children,
+  ))
 }
 
-module.exports=Photo
+export default Photo
