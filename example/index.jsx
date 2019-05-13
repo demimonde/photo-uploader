@@ -5,7 +5,7 @@ import render from '@depack/render'
   const { url } = await core({
     frontend: { directory: ['example', 'src'] },
     async api(ctx, next) {
-      if (ctx.path == '/form') {
+      if (ctx.path.startsWith('/form')) {
         ctx.body = { data: 'ok', error: null }
       } else await next()
     },

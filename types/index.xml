@@ -1,10 +1,22 @@
 <types>
-  <type name="Config" desc="Options for the program.">
-    <prop boolean name="shouldRun" default="true">
-      A boolean option.
+  <type name="PhotoUploaderProps" desc="Options for the PhotoUploader component." noToc>
+    <prop opt type="function" name="onRemove">
+      The function to call when a photo was removed.
     </prop>
-    <prop string name="text">
-      A text to return.
+    <prop opt type="function" name="onAdded">
+      The function to call when a photo was added.
+    </prop>
+    <prop string name="fieldName" default="files[]">
+      The name of the hidden `input` fields.
+    </prop>
+    <prop opt type="function" name="onPhotoUploaded">
+      The callback to call when a photo was uploaded.
+    </prop>
+    <prop type="Array<string>" string name="uploadedResults" default="[]">
+      The list of photos which were saved and don't need uploading.
+    </prop>
+    <prop string name="uploadUri">
+      The URL where to upload files.
     </prop>
   </type>
 </types>
