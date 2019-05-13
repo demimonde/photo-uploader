@@ -14,11 +14,11 @@
     "doc": "NODE_DEBUG=doc doc documentary -o README.md",
     "b": "alamode src -o build -s",
     "d": "yarn-s d1",
-    "d1": "NODE_DEBUG=doc doc src/index.js -g",
+    "d1": "NODE_DEBUG=doc doc src/index.jsx -g",
     "build": "yarn-s d b doc",
     "rec": "NODE_DEBUG=appshot appshot -T 23 -a Terminal -y 150 -f",
     "e": "node example",
-    "example/": "yarn e example/example.js"
+    "example/": "yarn e example/example"
   },
   "files": [
     "build",
@@ -38,10 +38,16 @@
   },
   "homepage": "https://github.com/demimonde/photo-uploader#readme",
   "devDependencies": {
+    "@depack/render": "1.1.4",
+    "@idio/core": "1.3.5",
     "alamode": "1.8.6",
     "documentary": "1.22.0",
     "eslint-config-artdeco": "1.0.1",
+    "preact": "8.4.2",
     "yarn-s": "1.1.0",
     "zoroaster": "3.9.0"
+  },
+  "dependencies": {
+    "@metadata/exif": "^1.0.0"
   }
 }
