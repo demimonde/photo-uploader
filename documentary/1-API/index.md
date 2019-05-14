@@ -25,11 +25,11 @@ When photos are uploaded to the URL provided, their read the `photoId` from the 
 
 There are 6 states of the photo:
 
-- <kdb>added</kbd> Just dropped to the component, needs to start uploading [grey].
-- <kdb>uploading</kbd> Started the upload process [blue].
-- <kdb>error</kbd> Upload failed, there's a button to retry [red].
-- <kdb>processing</kbd> The upload has completed, waiting for the server to finish processing (resizing, metadata, _etc_) [blue].
-- <kdb>ready</kbd> Ready to be saved [yellow].
-- <kdb>saved</kbd> The photo was saved via the form, it's id is present in the `uploadedResults` property of the component, and it won't be saved again [green].
+- <kbd>added</kbd> Just dropped to the component, needs to start uploading [grey].
+- <kbd>uploading</kbd> Started the upload process [blue].
+- <kbd>error</kbd> Upload failed, there's a button to retry [red].
+- <kbd>processing</kbd> The upload has completed, waiting for the server to finish processing (resizing, metadata, _etc_) [blue].
+- <kbd>ready</kbd> Ready to be saved [yellow].
+- <kbd>saved</kbd> The photo was saved via the form, it's id is present in the `uploadedResults` property of the component, and it won't be saved again [green].
 
 %~%
