@@ -5,7 +5,7 @@
 `photo-uploader` is The JSX Photo Uploader Component.
 
 ```sh
-yarn add -E photo-uploader
+yarn add photo-uploader
 ```
 
 ## Table Of Contents
