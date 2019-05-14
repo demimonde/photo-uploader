@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/photo-uploader.svg)](https://npmjs.org/package/photo-uploader)
 
-`photo-uploader` is The JSX Photo Uploader Component.
+`photo-uploader` is The _Preact_ JSX Photo Uploader Component. This is a beta pre-release with the package not available in English (internalisation will follow soon).
 
 ```sh
 yarn add photo-uploader
@@ -25,6 +25,8 @@ The package is available by importing its default component:
 ```js
 import photoUploader from 'photo-uploader'
 ```
+
+The package has been compiled into `h`-pragma calls (without JSX) using [ÀLaMode](https://artdecocode.com/alamode/) transpiler, and the CSS imports are changed into importing a CSS injector script. See the [build](build) folder to see how it looks. The `import/export` statements are left as they are though, and the recommended usage of the package is to bundle it with [_Depack_](https://artdecocode.com/depack/) &mdash; the front-end bundler that uses _Google Closure Compiler_.
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true"></a></p>
 

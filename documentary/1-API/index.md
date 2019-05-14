@@ -6,6 +6,8 @@ The package is available by importing its default component:
 import photoUploader from 'photo-uploader'
 ```
 
+The package has been compiled into `h`-pragma calls (without JSX) using [ÀLaMode](https://artdecocode.com/alamode/) transpiler, and the CSS imports are changed into importing a CSS injector script. See the [build](build) folder to see how it looks. The `import/export` statements are left as they are though, and the recommended usage of the package is to bundle it with [_Depack_](https://artdecocode.com/depack/) &mdash; the front-end bundler that uses _Google Closure Compiler_.
+
 %~%
 
 ```## PhotoUploader
