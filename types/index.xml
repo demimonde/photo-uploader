@@ -1,18 +1,18 @@
-<types>
-  <type name="PhotoUploaderProps" desc="Options for the PhotoUploader component." noToc>
-    <prop opt type="function" name="onRemove">
+<types ns="_photoUploader">
+  <type name="Props" desc="Options for the PhotoUploader component." desc="The photo uploader will create preview elements for each photo and have a hidden input field populated with the `photoId` received when the photo was updated. ">
+    <prop opt type="function(): void" name="onRemove">
       The function to call when a photo was removed.
     </prop>
-    <prop opt type="function" name="onAdded">
+    <prop opt type="function(): void" name="onAdded">
       The function to call when a photo was added.
     </prop>
-    <prop string name="fieldName" default="files[]">
-      The name of the hidden `input` fields.
+    <prop opt string name="fieldName">
+      The name of the hidden `input` fields. Default `files[]`.
     </prop>
-    <prop opt type="function" name="onPhotoUploaded">
-      The callback to call when a photo was uploaded.
+    <prop opt type="function(Object):void" name="onPhotoUploaded">
+      The callback to call when a photo was uploaded with the `result` property of the server response.
     </prop>
-    <prop type="Array<string>" string name="uploadedResults" default="[]">
+    <prop opt type="!Array<string>" string name="uploadedResults">
       The list of photos which were saved and don't need uploading.
     </prop>
     <prop string name="uploadUri">

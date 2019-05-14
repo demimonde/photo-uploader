@@ -9,7 +9,7 @@ class PhotoUploader extends Component {
   constructor() {
     super()
     this.state = { files: [] }
-    /** @type {PhotoUploaderProps} */
+    /** @type {!_photoUploader.Props} */
     this.props = this.props
   }
   removeFile(file) {
@@ -67,11 +67,16 @@ export default PhotoUploader
 
 /* documentary types/index.xml */
 /**
- * @typedef {Object} PhotoUploaderProps Options for the PhotoUploader component.
- * @prop {function} [onRemove] The function to call when a photo was removed.
- * @prop {function} [onAdded] The function to call when a photo was added.
- * @prop {string} [fieldName="files[]"] The name of the hidden `input` fields. Default `files[]`.
- * @prop {function} [onPhotoUploaded] The callback to call when a photo was uploaded.
- * @prop {string} [uploadedResults="[]"] The list of photos which were saved and don't need uploading. Default `[]`.
+ * @suppress {nonStandardJsDocs}
+ * @typedef {_photoUploader.Props} Props The photo uploader will create preview elements for each photo and have a hidden input field populated with the `photoId` received when the photo was updated.
+ */
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {Object} _photoUploader.Props The photo uploader will create preview elements for each photo and have a hidden input field populated with the `photoId` received when the photo was updated.
+ * @prop {function(): void} [onRemove] The function to call when a photo was removed.
+ * @prop {function(): void} [onAdded] The function to call when a photo was added.
+ * @prop {string} [fieldName] The name of the hidden `input` fields. Default `files[]`.
+ * @prop {function(Object):void} [onPhotoUploaded] The callback to call when a photo was uploaded with the `result` property of the server response.
+ * @prop {string} [uploadedResults] The list of photos which were saved and don't need uploading.
  * @prop {string} uploadUri The URL where to upload files.
  */

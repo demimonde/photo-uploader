@@ -1,3 +1,29 @@
+.PhotoUploader .ImageCopy.PhotoUploaderAdded {
+  background: linear-gradient(lightgrey, grey);
+  border-color: #838383;
+  box-shadow: rgb(98, 98, 98) 1px -5px 15px inset;
+}
+.PhotoUploader .ImageCopy.PhotoUploaderHasInput {
+  background: linear-gradient(yellow, rgb(207, 198, 92));
+  border-color: rgb(156, 158, 9);
+  box-shadow: inset 1px -5px 15px #9e7414;
+}
+.PhotoUploader .ImageCopy.PhotoUploaderError {
+  background: linear-gradient(coral, brown);
+  border-color: red;
+  box-shadow: rgb(162, 31, 31) 1px -5px 15px inset
+}
+.PhotoUploader .ImageCopy.PhotoUploaderUploaded {
+  background: linear-gradient(lightgreen, #82d285);
+  border-color: green;
+  box-shadow: inset 1px -5px 15px #6f9e14;
+}
+.PhotoUploader .ImageCopy.PhotoUploaderUploading {
+  background: linear-gradient(lightblue, blue);
+  border-color: blue;
+  box-shadow: inset 1px -5px 15px #2a33a0;
+}
+
 .PhotoUploader .ImageInfo {
   background: rgba(255, 255, 255, 0.75);
   word-break: break-all;
@@ -24,6 +50,12 @@
 .PreviewLoading {
   width: 290px;
 }
+.PhotoUploader .GalleryLink {
+  bottom: 0;
+  left: 0;
+  padding-left: .25rem;
+  padding-right: .25rem;
+}
 /* .PhotoUploader .Image {
   padding: .5rem;
 } */
@@ -46,33 +78,6 @@
 .PhotoUploader .Image:hover img {
   box-shadow: 0 0 19px 1px white;
 }
-
-.PhotoUploaderAdded {
-  background: linear-gradient(lightgrey, grey);
-  border-color: #838383;
-  box-shadow: rgb(98, 98, 98) 1px -5px 15px inset;
-}
-.PhotoUploaderHasInput {
-  background: linear-gradient(yellow, rgb(207, 198, 92));
-  border-color: rgb(156, 158, 9);
-  box-shadow: inset 1px -5px 15px #9e7414;
-}
-.PhotoUploaderError {
-  background: linear-gradient(coral, brown);
-  border-color: red;
-  box-shadow: rgb(162, 31, 31) 1px -5px 15px inset
-}
-.PhotoUploaderUploaded {
-  background: linear-gradient(lightgreen, #82d285);
-  border-color: green;
-  box-shadow: inset 1px -5px 15px #6f9e14;
-}
-.PhotoUploaderUploading {
-  background: linear-gradient(lightblue, blue);
-  border-color: blue;
-  box-shadow: inset 1px -5px 15px #2a33a0;
-}
-
 .PhotoUploaderHasInput:hover img {
   box-shadow: 0 0 19px 1px #ecff4a;
 }

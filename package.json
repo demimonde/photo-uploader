@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "The JSX Photo Uploader Component.",
   "main": "build/index.js",
-  "module": "src/index.js",
+  "module": "src/index.jsx",
   "scripts": {
     "t": "zoroaster -a",
     "test": "yarn t test/spec test/mask",
@@ -14,7 +14,7 @@
     "doc": "NODE_DEBUG=doc doc documentary -o README.md",
     "b": "alamode src -o build -j -p",
     "d": "yarn-s d1",
-    "d1": "NODE_DEBUG=doc doc src/index.jsx -g",
+    "d1": "typal src/index.jsx -c",
     "build": "yarn-s d b doc",
     "rec": "NODE_DEBUG=appshot appshot -T 23 -a Terminal -y 150 -f",
     "e": "alanode",
