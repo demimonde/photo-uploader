@@ -6,7 +6,7 @@ import render from '@depack/render'
     frontend: { directory: ['example', 'src'] },
     async api(ctx, next) {
       if (ctx.path.startsWith('/form')) {
-        ctx.body = { data: 'ok', error: null }
+        ctx.body = { error: null, photoId: Math.random() }
       } else await next()
     },
     serve(ctx) {
@@ -28,6 +28,6 @@ import render from '@depack/render'
         </body>
       </html>, { addDoctype: true })
     },
-  }, { port: null })
+  }, { port: 3000 })
   console.log('%s', url)
 })()

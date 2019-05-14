@@ -2,11 +2,13 @@
 
 [![npm version](https://badge.fury.io/js/photo-uploader.svg)](https://npmjs.org/package/photo-uploader)
 
-`photo-uploader` is The _Preact_ JSX Photo Uploader Component. This is a beta pre-release with the package not available in English (internalisation will follow soon).
+`photo-uploader` is The _Preact_ JSX Photo Uploader Component. This is a beta pre-release with the package not available in English (internalisation will follow soon). The component depends on Bootstrap styles (the skins will follow soon too, just trying to figure out how to do those things).
 
 ```sh
 yarn add photo-uploader
 ```
+
+![Photo Uploader Demo](doc/demo.gif)
 
 ## Table Of Contents
 
@@ -14,6 +16,7 @@ yarn add photo-uploader
 - [API](#api)
 - [`PhotoUploader()`](#photouploader-void)
   * [`_photoUploader.Props`](#type-_photouploaderprops)
+- [Server Response](#server-response)
 - [Copyright](#copyright)
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/0.svg?sanitize=true"></a></p>
@@ -80,6 +83,13 @@ There are 6 states of the photo:
 - <kbd>saved</kbd> The photo was saved via the form, it's id is present in the `uploadedResults` property of the component, and it won't be saved again [green].
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true"></a></p>
+
+## Server Response
+
+The component expects to receive a JSON response with 3 properties: `error`, `result` and `photoId`. The photo ID will be stored in the hidden input field, so that the parent form can send it, unless it's already included in the `uploadedResults` property which should be maintained by the parent form also. The result is the `SRC` of the uploaded image, which will replace the canvas-generated preview. It could be rotated according to metadata or watermarked _etc_. The error will be shown in the notification of the preview.
+
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true"></a></p>
+
 
 ## Copyright
 
