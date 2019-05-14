@@ -1,7 +1,6 @@
 import { h } from 'preact'
 /* eslint-env browser */
 import { Component } from 'preact'
-// import { A } from '../../../frontend/components/Bootstrap'
 import { handleBinaryFile } from '@metadata/exif'
 import Ellipsis from './Ellipsis'
 
@@ -184,6 +183,9 @@ class Photo extends Component {
   }
 }
 
+/**
+ * The sleek background behind the image.
+ */
 const Copy = ({ children, processing, error, hasInput, uploaded, src }) => {
   let className = 'Added'
   if (processing) {
@@ -195,7 +197,11 @@ const Copy = ({ children, processing, error, hasInput, uploaded, src }) => {
   } else if (uploaded) {
     className = 'Uploaded'
   }
-  const cl = ['ImageCopy', src ? undefined : 'PreviewLoading', `PhotoUploader${className}`].filter(Boolean).join(' ')
+  const cl = [
+    'ImageCopy',
+    `PhotoUploader${className}`,
+    ...(src ? [] : ['PreviewLoading']),
+  ].join(' ')
 
   return ( h('div',{'className':cl},
     children,
