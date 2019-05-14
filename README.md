@@ -14,7 +14,7 @@ yarn add photo-uploader
 
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
-- [`PhotoUploader()`](#photouploader-void)
+- [PhotoUploader](#photouploader)
   * [`_photoUploader.Props`](#type-_photouploaderprops)
 - [Server Response](#server-response)
 - [Copyright](#copyright)
@@ -26,14 +26,14 @@ yarn add photo-uploader
 The package is available by importing its default component:
 
 ```js
-import photoUploader from 'photo-uploader'
+import PhotoUploader from 'photo-uploader'
 ```
 
 The package has been compiled into `h`-pragma calls (without JSX) using [ÀLaMode](https://artdecocode.com/alamode/) transpiler, and the CSS imports are changed into importing a CSS injector script. See the [build](build) folder to see how it looks. The `import/export` statements are left as they are though, and the recommended usage of the package is to bundle it with [_Depack_](https://artdecocode.com/depack/) &mdash; the front-end bundler that uses _Google Closure Compiler_.
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true"></a></p>
 
-## `PhotoUploader(): void`
+## PhotoUploader
 
 Creates an area with an input to choose files, and a drag-and-drop zone. As soon as photos are added, their previews are generated on a small canvas, to prevent using too much memory to display heavy pictures, and metadata is read to display the date when the photo was taken.
 
