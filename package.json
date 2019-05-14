@@ -1,9 +1,9 @@
 {
   "name": "photo-uploader",
   "version": "0.0.0",
-  "description": "The JSX Photo Uploader Component.",
+  "description": "The Preact JSX Photo Uploader Component.",
   "main": "build/index.js",
-  "module": "src/index.jsx",
+  "module": "build/index.js",
   "scripts": {
     "t": "zoroaster -a",
     "test": "yarn t test/spec test/mask",
@@ -16,7 +16,6 @@
     "d": "yarn-s d1",
     "d1": "typal src/index.jsx -c",
     "build": "yarn-s d b doc",
-    "rec": "NODE_DEBUG=appshot appshot -T 23 -a Terminal -y 150 -f",
     "e": "alanode",
     "example/": "yarn e example"
   },
@@ -29,7 +28,13 @@
     "url": "git://github.com/demimonde/photo-uploader.git"
   },
   "keywords": [
-    "photo-uploader"
+    "photo-uploader",
+    "photo",
+    "upload",
+    "image",
+    "preact",
+    "jsx",
+    "component"
   ],
   "author": "Anton <anton@adc.sh>",
   "license": "MIT",
