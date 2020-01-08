@@ -1,3 +1,9 @@
+## 8 January 2020
+
+### [1.1.0](https://github.com/demimonde/photo-uploader/compare/v1.0.0...v1.1.0)
+
+- [feature] Add locales (default `en`).
+
 ## 14 May 2019
 
 ### [1.0.0](https://github.com/demimonde/photo-uploader/compare/v0.0.0...v1.0.0)
