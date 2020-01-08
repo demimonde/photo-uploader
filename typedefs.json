@@ -1,0 +1,10 @@
+{
+  "_photoUploader.Props": {
+    "link": "https://github.com/demimonde/photo-uploader#type-props",
+    "description": "The photo uploader will create preview elements for each photo and have a hidden input field populated with the `photoId` received when the photo was updated."
+  },
+  "_photoUploader.Locale": {
+    "link": "https://github.com/demimonde/photo-uploader#type-locale",
+    "description": "Language translations."
+  }
+}

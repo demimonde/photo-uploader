@@ -11,7 +11,7 @@
     "mask": "yarn t test/mask",
     "test-build": "ALAMODE_ENV=test-build yarn test",
     "lint": "eslint .",
-    "doc": "NODE_DEBUG=doc doc -o README.md",
+    "doc": "doc -o README.md -d -a -n _photoUploader",
     "b": "alamode src -o build -j -p",
     "d": "yarn-s d1 externs",
     "d1": "typal src/index.jsx src/locale.js -c",
@@ -30,6 +30,7 @@
     "type": "git",
     "url": "git://github.com/demimonde/photo-uploader.git"
   },
+  "typedefs": "typedefs.json",
   "keywords": [
     "photo-uploader",
     "photo",

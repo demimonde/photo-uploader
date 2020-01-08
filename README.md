@@ -17,9 +17,9 @@ npm install photo-uploader
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
 - [PhotoUploader](#photouploader)
-  * [`_photoUploader.Props`](#type-_photouploaderprops)
+  * [`Props`](#type-props)
 - [Locales](#locales)
-  * [`_photoUploader.Locale`](#type-_photouploaderlocale)
+  * [`Locale`](#type-locale)
 - [Server Response](#server-response)
 - [Copyright](#copyright)
 
@@ -66,18 +66,18 @@ class Main extends Component {
 render(<Main />, document.querySelector('#preact'))
 ```
 
-<strong><a name="type-_photouploaderprops">`_photoUploader.Props`</a></strong>: The photo uploader will create preview elements for each photo and have a hidden input field populated with the `photoId` received when the photo was updated.
+__<a name="type-props">`Props`</a>__: The photo uploader will create preview elements for each photo and have a hidden input field populated with the `photoId` received when the photo was updated.
 
-|      Name       |                                                  Type                                                  |                                                                                    Description                                                                                    | Default |
-| --------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| fieldName       | <em>string</em>                                                                                        | The name of the hidden `input` fields. Default `files[]`.<br/>This is for the second part of the submission, and is different from the image upload field, which is just `image`. | -       |
-| uploadedResults | <em>string</em>                                                                                        | The list of photos which were saved and don't need uploading.                                                                                                                     | -       |
-| __uploadUri*__  | <em>string</em>                                                                                        | The URL where to upload files.                                                                                                                                                    | -       |
-| LOCALE          | <em><a href="#type-_photouploaderlocale" title="Language translations.">_photoUploader.Locale</a></em> | An hash map with locale values.                                                                                                                                                   | -       |
-| locale          | <em>string</em>                                                                                        | A language for existing locales (either `en` or `ru`).                                                                                                                            | `en`    |
-| onRemove        | <em>(file: !Object) => void</em>                                                                       | The function to call when a photo was removed.                                                                                                                                    | -       |
-| onAdded         | <em>() => void</em>                                                                                    | The function to call when a photo was added.                                                                                                                                      | -       |
-| onPhotoUploaded | <em>(photo: !Object) => void</em>                                                                      | The callback to call when a photo was uploaded with the `result` property of the server response.                                                                                 | -       |
+|      Name       |                                   Type                                    |                                                                                    Description                                                                                    | Default |
+| --------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| fieldName       | <em>string</em>                                                           | The name of the hidden `input` fields. Default `files[]`.<br/>This is for the second part of the submission, and is different from the image upload field, which is just `image`. | -       |
+| uploadedResults | <em>string</em>                                                           | The list of photos which were saved and don't need uploading.                                                                                                                     | -       |
+| __uploadUri*__  | <em>string</em>                                                           | The URL where to upload files.                                                                                                                                                    | -       |
+| LOCALE          | <em><a href="#type-locale" title="Language translations.">Locale</a></em> | An hash map with locale values.                                                                                                                                                   | -       |
+| locale          | <em>string</em>                                                           | A language for existing locales (either `en` or `ru`).                                                                                                                            | `en`    |
+| onRemove        | <em>(file: !Object) => void</em>                                          | The function to call when a photo was removed.                                                                                                                                    | -       |
+| onAdded         | <em>() => void</em>                                                       | The function to call when a photo was added.                                                                                                                                      | -       |
+| onPhotoUploaded | <em>(photo: !Object) => void</em>                                         | The callback to call when a photo was uploaded with the `result` property of the server response.                                                                                 | -       |
 
 When photos are uploaded to the URL provided, their read the `photoId` from the JSON response and add it to the hidden id field provided. The parent form (which is not implemented by this component) can then be used to save the ids of saved pictures to the server. The implementation intentionally decouples uploading photos from saving them on the server, so that it is possible to upload them to a route which is different from the business-logic server that would save the photo into appropriate category (_etc_) which would also be present in the form implemented by the page.
 
@@ -100,7 +100,7 @@ There are 6 states of the photo:
 
 It is possible to extend the language of the form by providing a custom `LOCALE` object via the properties. The following interface is used:
 
-<strong><a name="type-_photouploaderlocale">`_photoUploader.Locale`</a></strong>: Language translations.
+__<a name="type-locale">`Locale`</a>__: Language translations.
 <table>
  <thead><tr>
   <th>Name</th>
