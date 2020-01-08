@@ -121,10 +121,12 @@ class Photo extends Component {
     this.upload()
     return false
   }
-  render ({
+  render({
     name, onRemove, uploadedResults,
     photoIdName = 'photos[]',
   }) {
+    /** @type {!_photoUploader.Locale} */
+    const LOCALE = this.context.LOCALE
     const {
       progress, error, preview, uploaded, result, metadata, photoId,
     } = this.state
@@ -144,7 +146,7 @@ class Photo extends Component {
       h('div',{'className':"Image"},
         !src &&
           h('span',{'className':"PreviewLoadingSpan"},
-            `Загрузка превью...`
+            LOCALE.previewLoading,`...`
           ),
         h('img',{'src':src}),
         h('span',{'className':"ImageInfo",'style':"top:0;left:0;"},
@@ -155,25 +157,27 @@ class Photo extends Component {
         h('span',{'onClick':onRemove,'className':"ImageInfo CloseSpan"},`✕`),
         !result && !error && progress === null &&
           h(BottomLeft,{style:"background:transparent; padding-left:0;"},
-            h('a',{'onClick':this.uploadHandle,'className':"btn btn-light btn-sm"},`Загрузить`),
+            h('a',{'onClick':this.uploadHandle,'className':"btn btn-light btn-sm"},
+              LOCALE.upload,
+            ),
           )
         ,
         progress !== null && progress != 100 && h(BottomLeft,{},
           h('progress',{'max':100,'value':progress}),
         ),
         processing && h(BottomLeft,{},
-          `Выполняется обработка`,h(Ellipsis),
+          LOCALE.serverProcessing,h(Ellipsis),
           h('div',{'className':"spinner-border text-primary",'role':"status"},
             h('span',{'className':"sr-only"},`Loading...`),
           ),
         ),
         error && h('p',{'className':"ImageInfo PhotoError"},
-          `Ошибка: `,error,
+          LOCALE.error,`: `,error,
         ),
-        error && h('a',{'onClick':this.uploadHandle,'href':"#",'className':"btn btn-danger btn-sm",'style':"position:absolute;right:0;bottom:0;"},`Загрузить снова`),
+        error && h('a',{'onClick':this.uploadHandle,'href':"#",'className':"btn btn-danger btn-sm",'style':"position:absolute;right:0;bottom:0;"},LOCALE.uploadAgain),
         result &&
           h('p',{'className':"ImageInfo GalleryLink"},
-            h('a',{'href':result,'rel':"noopener noreferrer",'target':"_blank"},`Ссылка`),
+            h('a',{'href':result,'rel':"noopener noreferrer",'target':"_blank"},LOCALE.link),
           )
         ,
         hasInput && photoId &&
@@ -215,3 +219,8 @@ const BottomLeft = ({ children, style = '', className = 'ImageInfo' }) => {
 }
 
 export default Photo
+
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('./locale').Locale} _photoUploader.Locale
+ */

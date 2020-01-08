@@ -1,9 +1,9 @@
-import core from '@idio/core'
+import core from '@idio/idio'
 import render from '@depack/render'
 
 (async () => {
   const { url } = await core({
-    frontend: { directory: ['example', 'src'] },
+    frontend: { use: true, directory: ['example', 'src'] },
     async api(ctx, next) {
       if (ctx.path.startsWith('/form')) {
         ctx.body = { error: null, photoId: Math.random() }

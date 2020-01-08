@@ -1,22 +1,31 @@
 <types ns="_photoUploader">
   <type name="Props" desc="Options for the PhotoUploader component." desc="The photo uploader will create preview elements for each photo and have a hidden input field populated with the `photoId` received when the photo was updated. ">
-    <prop opt type="function(): void" name="onRemove">
+    <fn opt void name="onRemove">
+      <arg name="file" type="!Object">Some file info.</arg>
       The function to call when a photo was removed.
-    </prop>
-    <prop opt type="function(): void" name="onAdded">
+    </fn>
+    <fn opt void name="onAdded">
       The function to call when a photo was added.
-    </prop>
+    </fn>
     <prop opt string name="fieldName">
       The name of the hidden `input` fields. Default `files[]`.
+      This is for the second part of the submission, and is different from the image upload field, which is just `image`.
     </prop>
-    <prop opt type="function(Object):void" name="onPhotoUploaded">
+    <fn opt void name="onPhotoUploaded">
+      <arg name="photo" type="!Object">The photo data as object response from the server.</arg>
       The callback to call when a photo was uploaded with the `result` property of the server response.
-    </prop>
+    </fn>
     <prop opt type="!Array<string>" string name="uploadedResults">
       The list of photos which were saved and don't need uploading.
     </prop>
     <prop string name="uploadUri">
       The URL where to upload files.
+    </prop>
+    <prop type="_photoUploader.Locale" name="LOCALE" opt>
+      An hash map with locale values.
+    </prop>
+    <prop string name="locale" default="en">
+      A language for existing locales (either `en` or `ru`).
     </prop>
   </type>
 </types>

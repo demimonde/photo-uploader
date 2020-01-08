@@ -1,0 +1,28 @@
+<types ns="_photoUploader">
+  <type name="Locale" desc="Language translations.">
+    <prop string opt name="recognition">
+      When starting to process local file.
+    </prop>
+    <prop string opt name="drop">
+      Drop area label.
+    </prop>
+    <prop string opt name="previewLoading">
+      Preview is loading placeholder.
+    </prop>
+    <prop string opt name="upload">
+      Upload button.
+    </prop>
+    <prop string opt name="uploadAgain">
+      Upload again button (after fail).
+    </prop>
+    <prop string opt name="link">
+      Link text.
+    </prop>
+    <prop string opt name="error">
+      Error notification.
+    </prop>
+    <prop string opt name="serverProcessing">
+      The photo is being processed on the server.
+    </prop>
+  </type>
+</types>

@@ -120,10 +120,12 @@ class Photo extends Component {
     this.upload()
     return false
   }
-  render ({
+  render({
     name, onRemove, uploadedResults,
     photoIdName = 'photos[]',
   }) {
+    /** @type {!_photoUploader.Locale} */
+    const LOCALE = this.context.LOCALE
     const {
       progress, error, preview, uploaded, result, metadata, photoId,
     } = this.state
@@ -143,7 +145,7 @@ class Photo extends Component {
       <div className="Image">
         {!src &&
           <span className="PreviewLoadingSpan">
-            Загрузка превью...
+            {LOCALE.previewLoading}...
           </span>}
         <img src={src} />
         <span className="ImageInfo" style="top:0;left:0;">
@@ -154,25 +156,27 @@ class Photo extends Component {
         <span className="ImageInfo CloseSpan" onClick={onRemove}>✕</span>
         {!result && !error && progress === null &&
           <BottomLeft style="background:transparent; padding-left:0;">
-            <a className="btn btn-light btn-sm" onClick={this.uploadHandle}>Загрузить</a>
+            <a className="btn btn-light btn-sm" onClick={this.uploadHandle}>
+              {LOCALE.upload}
+            </a>
           </BottomLeft>
         }
         {progress !== null && progress != 100 && <BottomLeft>
           <progress max={100} value={progress}/>
         </BottomLeft>}
         {processing && <BottomLeft>
-          Выполняется обработка<Ellipsis />
+          {LOCALE.serverProcessing}<Ellipsis />
           <div className="spinner-border text-primary" role="status">
             <span className="sr-only">Loading...</span>
           </div>
         </BottomLeft>}
         {error && <p className="ImageInfo PhotoError">
-          Ошибка: {error}
+          {LOCALE.error}: {error}
         </p>}
-        {error && <a href="#" className="btn btn-danger btn-sm" onClick={this.uploadHandle} style="position:absolute;right:0;bottom:0;">Загрузить снова</a>}
+        {error && <a href="#" className="btn btn-danger btn-sm" onClick={this.uploadHandle} style="position:absolute;right:0;bottom:0;">{LOCALE.uploadAgain}</a>}
         {result &&
           <p className="ImageInfo GalleryLink">
-            <a rel="noopener noreferrer" target="_blank" href={result}>Ссылка</a>
+            <a rel="noopener noreferrer" target="_blank" href={result}>{LOCALE.link}</a>
           </p>
         }
         {hasInput && photoId &&
@@ -214,3 +218,8 @@ const BottomLeft = ({ children, style = '', className = 'ImageInfo' }) => {
 }
 
 export default Photo
+
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('./locale').Locale} _photoUploader.Locale
+ */

@@ -13,14 +13,17 @@
     "lint": "eslint .",
     "doc": "NODE_DEBUG=doc doc -o README.md",
     "b": "alamode src -o build -j -p",
-    "d": "yarn-s d1",
-    "d1": "typal src/index.jsx -c",
+    "d": "yarn-s d1 externs",
+    "d1": "typal src/index.jsx src/locale.js -c",
     "build": "yarn-s d b doc",
     "e": "alanode",
+    "externs": "typal types/externs.js -e",
+    "up": "yarn-up -e preact",
     "example/": "yarn e example"
   },
   "files": [
     "build",
+    "types",
     "src"
   ],
   "repository": {
@@ -43,14 +46,14 @@
   },
   "homepage": "https://github.com/demimonde/photo-uploader#readme",
   "devDependencies": {
-    "@depack/render": "1.1.4",
-    "@idio/core": "1.4.0",
-    "alamode": "2.2.0",
-    "documentary": "1.27.2",
+    "@depack/render": "1.3.4",
+    "@idio/idio": "^1.0.1",
+    "alamode": "3.3.0",
+    "documentary": "1.35.9",
     "eslint-config-artdeco": "1.0.1",
     "preact": "8.4.2",
-    "yarn-s": "1.1.0",
-    "zoroaster": "4.1.1-alpha"
+    "yarn-s": "1.2.1",
+    "zoroaster": "4.1.2"
   },
   "dependencies": {
     "@metadata/exif": "^1.0.0"

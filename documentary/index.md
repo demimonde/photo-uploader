@@ -2,10 +2,12 @@
 
 %NPM: photo-uploader%
 
-`photo-uploader` is The _Preact_ JSX Photo Uploader Component. This is a beta pre-release with the package not available in English (internalisation will follow soon). The component depends on Bootstrap styles (the skins will follow soon too, just trying to figure out how to do those things).
+`photo-uploader` is A _Preact_ JSX Photo Uploader Component. It supports file uploading using `multipart/form-data` protocol, and can be easily translated. The component depends on _Bootstrap_ styles (skins will follow up soon too).
 
-```sh
+```console
+github:~$ \
 yarn add photo-uploader
+npm install photo-uploader
 ```
 
 ![Photo Uploader Demo](doc/demo.gif)
