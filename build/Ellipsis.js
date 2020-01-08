@@ -7,6 +7,7 @@ export default class Ellipsis extends Component {
     this.state = {
       count: 3,
     }
+    this.timer = null
   }
   componentDidMount() {
     this.timer = setInterval(() => {

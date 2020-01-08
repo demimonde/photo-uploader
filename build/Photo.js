@@ -36,7 +36,8 @@ class Photo extends Component {
     const reader2 = new FileReader()
     reader2.readAsArrayBuffer(file)
     reader2.onload = () => {
-      const d = handleBinaryFile(reader2.result, {
+      const res = /** @type {!ArrayBuffer} */ (reader2.result)
+      const d = handleBinaryFile(res, {
         parseDates: true,
       })
       this.setState({ metadata: d })
