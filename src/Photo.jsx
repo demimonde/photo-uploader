@@ -2,7 +2,20 @@
 import { Component } from 'preact'
 import { handleBinaryFile } from '@metadata/exif'
 import Ellipsis from './Ellipsis'
+import {
+  $PreviewLoading,
+  $ImageInfo,
+  $ImageCopy,
+} from './style.css'
+import { $Added, $Uploading, $Error, $HasInput, $Uploaded } from './photo.css'
+import './image.css'
 
+/**
+ * Creates a canvas from the image.
+ * @param {string} width
+ * @param {string} height
+ * @param {HTMLImageElement} img
+ */
 const getCanvas = (width, height, img) => {
   let canvas = document.createElement('canvas')
   canvas.width = width
@@ -42,6 +55,10 @@ class Photo extends Component {
       this.setState({ metadata: d })
     }
   }
+  /**
+   * Load file.
+   * @param {Blob} file
+   */
   getPreview(file) {
     const reader = new FileReader()
     reader.readAsDataURL(file)
@@ -73,8 +90,9 @@ class Photo extends Component {
     const { file } = this.props
     const formData = new FormData()
     formData.append('image', file)
+    formData.append('originalname', file.name)
     const xhr = new XMLHttpRequest()
-    xhr.open('POST', `${url}&name=${file.name}`, true)
+    xhr.open('POST', url, true)
     xhr.seenBytes = 0
     xhr.upload.addEventListener('progress', (e) => {
       this.updateProgress((e.loaded * 100.0 / e.total) || 100)
@@ -87,7 +105,7 @@ class Photo extends Component {
         const t = xhr.responseText
         let error, result, photoId
         try {
-          ({ 'error': error, 'result': result, 'photoId': photoId } = JSON.parse(t))
+          ({ error, 'result': result, 'photoId': photoId } = JSON.parse(t))
         } catch (err) {
           error = `Could not parse JSON: ${err.message}`
         }
@@ -105,7 +123,7 @@ class Photo extends Component {
       } else if (xhr.readyState == 4 && xhr.status != 200) {
         let error = 'XHR Error'
         try {
-          ({ 'error': error } = JSON.parse(xhr.responseText))
+          ({ error } = JSON.parse(xhr.responseText))
         } catch (err) {/**/}
         this.setState({ error: error })
       }
@@ -143,21 +161,21 @@ class Photo extends Component {
       // ok
     }
     return (<Copy error={error} hasInput={hasInput} processing={processing} src={src} uploaded={uploaded}>
-      <div className="Image">
+      <div Image position-relative w-100 h-100>
         {!src &&
-          <span className="PreviewLoadingSpan">
+          <span PreviewLoadingSpan position-absolute text-center>
             {LOCALE.previewLoading}...
           </span>}
-        <img src={src} />
-        <span className="ImageInfo" style="top:0;left:0;">
+        <img src={src} mw-100 mh-100 />
+        <span ImageInfo style="top:0;left:0;">
           {name}
           {date && <br/>}
           {date}
         </span>
-        <span className="ImageInfo CloseSpan" onClick={onRemove}>✕</span>
+        <span ImageInfo CloseSpan onClick={onRemove} overflow-hidden text-center>✕</span>
         {!result && !error && progress === null &&
-          <BottomLeft style="background:transparent; padding-left:0;">
-            <a className="btn btn-light btn-sm" onClick={this.uploadHandle}>
+          <BottomLeft style="background:transparent;" pl-0>
+            <a btn btn-light btn-sm onClick={this.uploadHandle}>
               {LOCALE.upload}
             </a>
           </BottomLeft>
@@ -167,16 +185,16 @@ class Photo extends Component {
         </BottomLeft>}
         {processing && <BottomLeft>
           {LOCALE.serverProcessing}<Ellipsis />
-          <div className="spinner-border text-primary" role="status">
-            <span className="sr-only">Loading...</span>
+          <div spinner-border text-primary role="status">
+            <span sr-only>Loading...</span>
           </div>
         </BottomLeft>}
-        {error && <p className="ImageInfo PhotoError">
+        {error && <p ImageInfo PhotoError>
           {LOCALE.error}: {error}
         </p>}
-        {error && <a href="#" className="btn btn-danger btn-sm" onClick={this.uploadHandle} style="position:absolute;right:0;bottom:0;">{LOCALE.uploadAgain}</a>}
+        {error && <a href="#" btn btn-danger btn-sm position-absolute onClick={this.uploadHandle} style="right:0;bottom:0;">{LOCALE.uploadAgain}</a>}
         {result &&
-          <p className="ImageInfo GalleryLink">
+          <p ImageInfo GalleryLink>
             <a rel="noopener noreferrer" target="_blank" href={result}>{LOCALE.link}</a>
           </p>
         }
@@ -191,29 +209,29 @@ class Photo extends Component {
  * The sleek background behind the image.
  */
 const Copy = ({ children, processing, error, hasInput, uploaded, src }) => {
-  let className = 'Added'
+  let className = $Added
   if (processing) {
-    className = 'Uploading'
+    className = $Uploading
   } else if (error) {
-    className = 'Error'
+    className = $Error
   } else if (hasInput) {
-    className = 'HasInput'
+    className = $HasInput
   } else if (uploaded) {
-    className = 'Uploaded'
+    className = $Uploaded
   }
   const cl = [
-    'ImageCopy',
-    `PhotoUploader${className}`,
-    ...(src ? [] : ['PreviewLoading']),
+    $ImageCopy,
+    className,
+    ...(src ? [] : [$PreviewLoading]),
   ].join(' ')
 
-  return (<div className={cl}>
+  return (<div className={cl} d-inline-block>
     {children}
   </div>)
 }
 
-const BottomLeft = ({ children, style = '', className = 'ImageInfo' }) => {
-  return (<span className={className} style={`bottom:0;left:0;${style}`}>
+const BottomLeft = ({ children, style = '', className = $ImageInfo }) => {
+  return (<span className={className} position-absolute style={`bottom:0;left:0;${style}`}>
     {children}
   </span>)
 }

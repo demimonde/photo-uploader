@@ -1,9 +1,14 @@
-import core from '@idio/idio'
-import render from '@depack/render'
+import core, { render } from '@idio/idio'
+import classNames from './bootstrap'
 
 (async () => {
   const { url } = await core({
-    frontend: { use: true, directory: ['example', 'src'] },
+    frontend: { use: true, directory: ['example', 'src'],
+      jsxOptions: {
+        prop2class: true,
+        classNames, // bootstrap classnames
+      },
+    },
     async api(ctx, next) {
       if (ctx.path.startsWith('/form')) {
         ctx.body = { error: null, photoId: Math.random() }
@@ -12,7 +17,7 @@ import render from '@depack/render'
     serve(ctx) {
       ctx.body = render(<html>
         <head>
-          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossOrigin="anonymous"/>
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
           <meta charset="utf-8"/>
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 

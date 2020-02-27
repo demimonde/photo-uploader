@@ -56,11 +56,11 @@ class PhotoUploader extends Component {
    */
   render({ fieldName = 'files[]', onPhotoUploaded, uploadedResults, uploadUri }) {
     const LOCALE = this.LOCALE
-    if (!LOCALE) return <div>Photo Uploader Error: Unknown Locale</div>
+    if (!LOCALE) return (<div>Photo Uploader Error: Unknown Locale</div>)
 
     const { hid, id } = this.context
     let counter = 0
-    return (<div className="PhotoUploader" onDragEnter={(event) => {
+    return (<div PhotoUploader onDragEnter={(event) => {
       event.preventDefault()
       counter++
       event.currentTarget.style.background = '#E91E63'
