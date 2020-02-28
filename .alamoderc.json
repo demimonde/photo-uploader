@@ -7,6 +7,19 @@
           "to": "$1build"
         }
       }
+    },
+    "build": {
+      "import": {
+        "replacement": {
+          "from": "^(.+)/(.+).css$",
+          "to": "$1/closure.css"
+        }
+      },
+      "jsx": {
+        "classNames": {
+          "src/styles/closure.css": "src/styles/closure.json"
+        }
+      }
     }
   }
 }

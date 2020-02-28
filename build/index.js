@@ -2,7 +2,7 @@ import { h } from 'preact'
 import { Component } from 'preact'
 import { RU_LOCALE, EN_LOCALE } from './locale'
 import Photo from './Photo'
-import './style.css.js'
+import './styles/style.css.js'
 
 const loc = {
   'RU_LOCALE': RU_LOCALE,
@@ -57,7 +57,7 @@ class PhotoUploader extends Component {
    */
   render({ fieldName = 'files[]', onPhotoUploaded, uploadedResults, uploadUri }) {
     const LOCALE = this.LOCALE
-    if (!LOCALE) return h('div',{},`Photo Uploader Error: Unknown Locale`)
+    if (!LOCALE) return (h('div',{},`Photo Uploader Error: Unknown Locale`))
 
     const { hid, id } = this.context
     let counter = 0
@@ -65,7 +65,7 @@ class PhotoUploader extends Component {
       event.preventDefault()
       counter++
       event.currentTarget.style.background = '#E91E63'
-    },'className':"PhotoUploader", 'onDragLeave':(event) => {
+    },'PhotoUploader':true, 'onDragLeave':(event) => {
       counter--
       if (counter == 0)
         event.currentTarget.style.background = ''

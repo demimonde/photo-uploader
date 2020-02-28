@@ -6,9 +6,9 @@ import {
   $PreviewLoading,
   $ImageInfo,
   $ImageCopy,
-} from './style.css'
-import { $Added, $Uploading, $Error, $HasInput, $Uploaded } from './photo.css'
-import './image.css'
+} from './styles/style.css'
+import { $Added, $Uploading, $Error, $HasInput, $Uploaded } from './styles/photo.css'
+import './styles/image.css'
 
 /**
  * Creates a canvas from the image.

@@ -1,7 +1,7 @@
 import { Component } from 'preact'
 import { RU_LOCALE, EN_LOCALE } from './locale'
 import Photo from './Photo'
-import './style.css'
+import './styles/style.css'
 
 const loc = {
   'RU_LOCALE': RU_LOCALE,
@@ -88,7 +88,7 @@ class PhotoUploader extends Component {
       {this.state.files.map(({ file, pid }) => {
         return (<Photo uploadUri={uploadUri} key={pid} name={file.name} file={file} onRemove={() => {
           this.removeFile(file)
-        }} fieldName={fieldName} onUploaded={onPhotoUploaded} uploadedResults={uploadedResults}/>)
+        }} fieldName={fieldName} onUploaded={onPhotoUploaded} uploadedResults={uploadedResults} />)
       })}
     </div>)
   }

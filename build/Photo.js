@@ -3,7 +3,20 @@ import { h } from 'preact'
 import { Component } from 'preact'
 import { handleBinaryFile } from '@metadata/exif'
 import Ellipsis from './Ellipsis'
+import {
+  $PreviewLoading,
+  $ImageInfo,
+  $ImageCopy,
+} from './styles/style.css'
+import { $Added, $Uploading, $Error, $HasInput, $Uploaded } from './styles/photo.css'
+import './styles/image.css.js'
 
+/**
+ * Creates a canvas from the image.
+ * @param {string} width
+ * @param {string} height
+ * @param {HTMLImageElement} img
+ */
 const getCanvas = (width, height, img) => {
   let canvas = document.createElement('canvas')
   canvas.width = width
@@ -43,6 +56,10 @@ class Photo extends Component {
       this.setState({ metadata: d })
     }
   }
+  /**
+   * Load file.
+   * @param {Blob} file
+   */
   getPreview(file) {
     const reader = new FileReader()
     reader.readAsDataURL(file)
@@ -74,8 +91,9 @@ class Photo extends Component {
     const { file } = this.props
     const formData = new FormData()
     formData.append('image', file)
+    formData.append('originalname', file.name)
     const xhr = new XMLHttpRequest()
-    xhr.open('POST', `${url}&name=${file.name}`, true)
+    xhr.open('POST', url, true)
     xhr.seenBytes = 0
     xhr.upload.addEventListener('progress', (e) => {
       this.updateProgress((e.loaded * 100.0 / e.total) || 100)
@@ -88,7 +106,7 @@ class Photo extends Component {
         const t = xhr.responseText
         let error, result, photoId
         try {
-          ({ 'error': error, 'result': result, 'photoId': photoId } = JSON.parse(t))
+          ({ error, 'result': result, 'photoId': photoId } = JSON.parse(t))
         } catch (err) {
           error = `Could not parse JSON: ${err.message}`
         }
@@ -106,7 +124,7 @@ class Photo extends Component {
       } else if (xhr.readyState == 4 && xhr.status != 200) {
         let error = 'XHR Error'
         try {
-          ({ 'error': error } = JSON.parse(xhr.responseText))
+          ({ error } = JSON.parse(xhr.responseText))
         } catch (err) {/**/}
         this.setState({ error: error })
       }
@@ -144,21 +162,21 @@ class Photo extends Component {
       // ok
     }
     return (h(Copy,{error:error, hasInput:hasInput, processing:processing, src:src, uploaded:uploaded},
-      h('div',{'className':"Image"},
+      h('div',{'Image':true,'position-relative':true,'w-100':true,'h-100':true},
         !src &&
-          h('span',{'className':"PreviewLoadingSpan"},
+          h('span',{'PreviewLoadingSpan':true,'position-absolute':true,'text-center':true},
             LOCALE.previewLoading,`...`
           ),
-        h('img',{'src':src}),
-        h('span',{'className':"ImageInfo",'style':"top:0;left:0;"},
+        h('img',{'src':src,'mw-100':true,'mh-100':true}),
+        h('span',{'ImageInfo':true,'style':"top:0;left:0;"},
           name,
           date && h('br'),
           date,
         ),
-        h('span',{'onClick':onRemove,'className':"ImageInfo CloseSpan"},`✕`),
+        h('span',{'onClick':onRemove,'ImageInfo':true,'CloseSpan':true,'overflow-hidden':true,'text-center':true},`✕`),
         !result && !error && progress === null &&
-          h(BottomLeft,{style:"background:transparent; padding-left:0;"},
-            h('a',{'onClick':this.uploadHandle,'className':"btn btn-light btn-sm"},
+          h(BottomLeft,{style:"background:transparent;",'pl-0':true},
+            h('a',{'onClick':this.uploadHandle,'btn':true,'btn-light':true,'btn-sm':true},
               LOCALE.upload,
             ),
           )
@@ -168,16 +186,16 @@ class Photo extends Component {
         ),
         processing && h(BottomLeft,{},
           LOCALE.serverProcessing,h(Ellipsis),
-          h('div',{'className':"spinner-border text-primary",'role':"status"},
-            h('span',{'className':"sr-only"},`Loading...`),
+          h('div',{'spinner-border':true,'text-primary':true,'role':"status"},
+            h('span',{'sr-only':true},`Loading...`),
           ),
         ),
-        error && h('p',{'className':"ImageInfo PhotoError"},
+        error && h('p',{'ImageInfo':true,'PhotoError':true},
           LOCALE.error,`: `,error,
         ),
-        error && h('a',{'onClick':this.uploadHandle,'href':"#",'className':"btn btn-danger btn-sm",'style':"position:absolute;right:0;bottom:0;"},LOCALE.uploadAgain),
+        error && h('a',{'onClick':this.uploadHandle,'href':"#",'btn':true,'btn-danger':true,'btn-sm':true,'position-absolute':true,'style':"right:0;bottom:0;"},LOCALE.uploadAgain),
         result &&
-          h('p',{'className':"ImageInfo GalleryLink"},
+          h('p',{'ImageInfo':true,'GalleryLink':true},
             h('a',{'href':result,'rel':"noopener noreferrer",'target':"_blank"},LOCALE.link),
           )
         ,
@@ -192,29 +210,29 @@ class Photo extends Component {
  * The sleek background behind the image.
  */
 const Copy = ({ children, processing, error, hasInput, uploaded, src }) => {
-  let className = 'Added'
+  let className = $Added
   if (processing) {
-    className = 'Uploading'
+    className = $Uploading
   } else if (error) {
-    className = 'Error'
+    className = $Error
   } else if (hasInput) {
-    className = 'HasInput'
+    className = $HasInput
   } else if (uploaded) {
-    className = 'Uploaded'
+    className = $Uploaded
   }
   const cl = [
-    'ImageCopy',
-    `PhotoUploader${className}`,
-    ...(src ? [] : ['PreviewLoading']),
+    $ImageCopy,
+    className,
+    ...(src ? [] : [$PreviewLoading]),
   ].join(' ')
 
-  return ( h('div',{'className':cl},
+  return (h('div',{'className':cl, 'd-inline-block':true},
     children,
   ))
 }
 
-const BottomLeft = ({ children, style = '', className = 'ImageInfo' }) => {
-  return ( h('span',{'className':className, 'style':`bottom:0;left:0;${style}`},
+const BottomLeft = ({ children, style = '', className = $ImageInfo }) => {
+  return (h('span',{'className':className, 'style':`bottom:0;left:0;${style}`, 'position-absolute':true},
     children,
   ))
 }
