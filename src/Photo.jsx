@@ -28,7 +28,7 @@ const getCanvas = (width, height, img) => {
 /**
  * The photo block included inside of the `PhotoUploader` which has 3 states: ready, uploaded and added.
  */
-class Photo extends Component {
+export default class Photo extends Component {
   constructor() {
     super()
     this.state = {
@@ -235,8 +235,6 @@ const BottomLeft = ({ children, style = '', className = $ImageInfo }) => {
     {children}
   </span>)
 }
-
-export default Photo
 
 /**
  * @suppress {nonStandardJsDocs}

@@ -11,7 +11,7 @@ const loc = {
 /**
  * The Photo Uploader is the image upload component which has drag and drop functionality to allow adding of files. It renders the list of currently added photos either via dynamic UI interaction or via the input element, and puts photo elements on the page.
  */
-class PhotoUploader extends Component {
+export default class PhotoUploader extends Component {
   constructor() {
     super()
     this.state = { files: [] }
@@ -93,8 +93,6 @@ class PhotoUploader extends Component {
     </div>)
   }
 }
-
-export default PhotoUploader
 
 /* documentary types/index.xml */
 /**
