@@ -2,7 +2,7 @@ import { h } from 'preact'
 import { Component } from 'preact'
 import { RU_LOCALE, EN_LOCALE } from './locale'
 import Photo from './Photo'
-import './styles/style.css.js'
+import './styles/closure.css'
 
 const loc = {
   'RU_LOCALE': RU_LOCALE,
@@ -12,7 +12,7 @@ const loc = {
 /**
  * The Photo Uploader is the image upload component which has drag and drop functionality to allow adding of files. It renders the list of currently added photos either via dynamic UI interaction or via the input element, and puts photo elements on the page.
  */
-class PhotoUploader extends Component {
+export default class PhotoUploader extends Component {
   constructor() {
     super()
     this.state = { files: [] }
@@ -65,7 +65,7 @@ class PhotoUploader extends Component {
       event.preventDefault()
       counter++
       event.currentTarget.style.background = '#E91E63'
-    },'PhotoUploader':true, 'onDragLeave':(event) => {
+    }, 'onDragLeave':(event) => {
       counter--
       if (counter == 0)
         event.currentTarget.style.background = ''
@@ -78,7 +78,7 @@ class PhotoUploader extends Component {
     }, 'onDragOver':(event) => {
       event.preventDefault()
       event.stopPropagation()
-    }},
+    },'className':'PhotoUploader'},
       h('input',{'id':id,'aria-described-by':hid,'onChange':(e) => {
         e.preventDefault()
         this.addFiles(e.currentTarget.files)
@@ -94,8 +94,6 @@ class PhotoUploader extends Component {
     ))
   }
 }
-
-export default PhotoUploader
 
 /* documentary types/index.xml */
 /**

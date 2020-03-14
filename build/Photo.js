@@ -7,9 +7,9 @@ import {
   $PreviewLoading,
   $ImageInfo,
   $ImageCopy,
-} from './styles/style.css'
-import { $Added, $Uploading, $Error, $HasInput, $Uploaded } from './styles/photo.css'
-import './styles/image.css.js'
+} from './styles/closure.css'
+import { $Added, $Uploading, $Error, $HasInput, $Uploaded } from './styles/closure.css'
+import './styles/closure.css'
 
 /**
  * Creates a canvas from the image.
@@ -29,7 +29,7 @@ const getCanvas = (width, height, img) => {
 /**
  * The photo block included inside of the `PhotoUploader` which has 3 states: ready, uploaded and added.
  */
-class Photo extends Component {
+export default class Photo extends Component {
   constructor() {
     super()
     this.state = {
@@ -92,6 +92,7 @@ class Photo extends Component {
     const formData = new FormData()
     formData.append('image', file)
     formData.append('originalname', file.name)
+    // have to use xhr as fetch doesn't support progress
     const xhr = new XMLHttpRequest()
     xhr.open('POST', url, true)
     xhr.seenBytes = 0
@@ -162,18 +163,18 @@ class Photo extends Component {
       // ok
     }
     return (h(Copy,{error:error, hasInput:hasInput, processing:processing, src:src, uploaded:uploaded},
-      h('div',{'Image':true,'position-relative':true,'w-100':true,'h-100':true},
+      h('div',{'position-relative':true,'w-100':true,'h-100':true,'className':'Image'},
         !src &&
-          h('span',{'PreviewLoadingSpan':true,'position-absolute':true,'text-center':true},
+          h('span',{'position-absolute':true,'text-center':true,'className':'PreviewLoadingSpan'},
             LOCALE.previewLoading,`...`
           ),
         h('img',{'src':src,'mw-100':true,'mh-100':true}),
-        h('span',{'ImageInfo':true,'style':"top:0;left:0;"},
+        h('span',{'style':"top:0;left:0;",'className':'ImageInfo'},
           name,
           date && h('br'),
           date,
         ),
-        h('span',{'onClick':onRemove,'ImageInfo':true,'CloseSpan':true,'overflow-hidden':true,'text-center':true},`✕`),
+        h('span',{'onClick':onRemove,'overflow-hidden':true,'text-center':true,'className':'ImageInfo CloseSpan'},`✕`),
         !result && !error && progress === null &&
           h(BottomLeft,{style:"background:transparent;",'pl-0':true},
             h('a',{'onClick':this.uploadHandle,'btn':true,'btn-light':true,'btn-sm':true},
@@ -190,12 +191,12 @@ class Photo extends Component {
             h('span',{'sr-only':true},`Loading...`),
           ),
         ),
-        error && h('p',{'ImageInfo':true,'PhotoError':true},
+        error && h('p',{'className':'ImageInfo PhotoError'},
           LOCALE.error,`: `,error,
         ),
         error && h('a',{'onClick':this.uploadHandle,'href':"#",'btn':true,'btn-danger':true,'btn-sm':true,'position-absolute':true,'style':"right:0;bottom:0;"},LOCALE.uploadAgain),
         result &&
-          h('p',{'ImageInfo':true,'GalleryLink':true},
+          h('p',{'className':'ImageInfo GalleryLink'},
             h('a',{'href':result,'rel':"noopener noreferrer",'target':"_blank"},LOCALE.link),
           )
         ,
@@ -236,8 +237,6 @@ const BottomLeft = ({ children, style = '', className = $ImageInfo }) => {
     children,
   ))
 }
-
-export default Photo
 
 /**
  * @suppress {nonStandardJsDocs}

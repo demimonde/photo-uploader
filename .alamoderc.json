@@ -16,8 +16,11 @@
         }
       },
       "jsx": {
+        "prop2class": true
+      },
+      "css": {
         "classNames": {
-          "src/styles/closure.css": "src/styles/closure.json"
+          "styles/closure.css": "src/styles/closure.json"
         }
       }
     }
