@@ -10,6 +10,7 @@
     "spec": "yarn t test/spec",
     "mask": "yarn t test/mask",
     "test-build": "yarn test -e test-build",
+    "start": "alanode example",
     "compile": "depack src/depack -o compile/photo-uploader.js -a -H -E -i",
     "lint": "eslint .",
     "doc": "doc -o README.md -d -a -n _photoUploader",
@@ -50,8 +51,9 @@
   "homepage": "https://github.com/demimonde/photo-uploader#readme",
   "devDependencies": {
     "@externs/preact": "^1.3.1",
-    "@idio/idio": "^1.4.1",
-    "alamode": "3.5.2",
+    "@idio/hot-reload": "^1.0.0",
+    "@idio/idio": "^1.6.2",
+    "alamode": "3.6.0",
     "closure-stylesheets": "^1.0.1",
     "depack": "^1.1.2",
     "documentary": "1.37.1",
@@ -61,6 +63,7 @@
     "zoroaster": "4.3.0"
   },
   "dependencies": {
-    "@metadata/exif": "^1.0.0"
+    "@metadata/exif": "^1.0.0",
+    "node-watch": "^0.6.3"
   }
 }

@@ -1,28 +1,14 @@
 import core, { render } from '@idio/idio'
 import classNames from './bootstrap'
-import frontend from '@idio/frontend/src'
 
 (async () => {
-  const { url, server } = await core({
-    // frontend: { use: true, directory: ['example', 'src'],
-    //   jsxOptions: {
-    //     prop2class: true,
-    //     classNames, // bootstrap classnames
-    //   },
-    // },
-    _frontend: {
-      middlewareConstructor() {
-        return frontend({
-          directory: ['example', 'src'],
-          hotReload: true,
-          jsxOptions: {
-            prop2class: true,
-            classNames, // bootstrap classnames
-          },
-          getServer() { return server },
-        })
+  const { url } = await core({
+    frontend: { use: true, directory: ['example', 'src'],
+      jsxOptions: {
+        prop2class: true,
+        classNames, // bootstrap classnames
       },
-      use: true,
+      hotReload: true,
     },
     async api(ctx, next) {
       if (ctx.path.startsWith('/form')) {
@@ -46,7 +32,6 @@ import frontend from '@idio/frontend/src'
         <body>
           <div id="preact-app" />
         </body>
-        <script src="/hot-reload.js"/>
         <script type="module" src="/example/App.jsx"/>
       </html>, { addDoctype: true })
     },

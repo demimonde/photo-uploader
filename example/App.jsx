@@ -14,9 +14,10 @@ class App extends Component {
 }
 
 const app = <App />
-const a = render(app, window['preact-app'])
+let a = render(app, window['preact-app'])
 
 /* IDIO HOT RELOAD */
-window['idioAddHotReload'] && window['idioAddHotReload'](() => {
-  render(app, document.body, a)
+import hotReload from '@idio/hot-reload'
+hotReload(() => {
+  a = render(app, document.body, a)
 })

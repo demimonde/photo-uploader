@@ -33,6 +33,7 @@
       "env": {
         "NODE_DEBUG": "photo-uploader",
       },
+      "sourceMaps": false,
       "console": "integratedTerminal",
       "args": [
         "example"

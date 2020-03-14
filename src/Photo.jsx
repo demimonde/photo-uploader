@@ -91,6 +91,7 @@ export default class Photo extends Component {
     const formData = new FormData()
     formData.append('image', file)
     formData.append('originalname', file.name)
+    // have to use xhr as fetch doesn't support progress
     const xhr = new XMLHttpRequest()
     xhr.open('POST', url, true)
     xhr.seenBytes = 0
