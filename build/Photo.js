@@ -163,18 +163,18 @@ export default class Photo extends Component {
       // ok
     }
     return (h(Copy,{error:error, hasInput:hasInput, processing:processing, src:src, uploaded:uploaded},
-      h('div',{'className':'Image position-relative w-100 h-100'},
+      h('div',{'className':'pu-g position-relative w-100 h-100'},
         !src &&
-          h('span',{'className':'PreviewLoadingSpan position-absolute text-center'},
+          h('span',{'className':'pu-f position-absolute text-center'},
             LOCALE.previewLoading,`...`
           ),
         h('img',{'src':src,'className':'mw-100 mh-100'}),
-        h('span',{'style':"top:0;left:0;",'className':'ImageInfo'},
+        h('span',{'style':"top:0;left:0;",'className':'pu-a'},
           name,
           date && h('br'),
           date,
         ),
-        h('span',{'onClick':onRemove,'className':'ImageInfo CloseSpan overflow-hidden text-center'},`✕`),
+        h('span',{'onClick':onRemove,'className':'pu-a pu-h overflow-hidden text-center'},`✕`),
         !result && !error && progress === null &&
           h(BottomLeft,{style:"background:transparent;",className:'pl-0'},
             h('a',{'onClick':this.uploadHandle,'className':'btn btn-light btn-sm'},
@@ -191,12 +191,12 @@ export default class Photo extends Component {
             h('span',{'className':'sr-only'},`Loading...`),
           ),
         ),
-        error && h('p',{'className':'ImageInfo PhotoError'},
+        error && h('p',{'className':'pu-a pu-b'},
           LOCALE.error,`: `,error,
         ),
         error && h('a',{'onClick':this.uploadHandle,'href':"#",'style':"right:0;bottom:0;",'className':'btn btn-danger btn-sm position-absolute'},LOCALE.uploadAgain),
         result &&
-          h('p',{'className':'ImageInfo GalleryLink'},
+          h('p',{'className':'pu-a pu-d'},
             h('a',{'href':result,'rel':"noopener noreferrer",'target':"_blank"},LOCALE.link),
           )
         ,

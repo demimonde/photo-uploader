@@ -17,7 +17,8 @@
       },
       "jsx": {
         "prop2class": true,
-        "classNames": "example/bootstrap.json"
+        "classNames": "example/bootstrap.json",
+        "renameMaps": "src/styles/closure.json"
       },
       "css": {
         "classNames": {
