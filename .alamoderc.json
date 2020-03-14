@@ -16,7 +16,8 @@
         }
       },
       "jsx": {
-        "prop2class": true
+        "prop2class": true,
+        "classNames": "example/bootstrap.json"
       },
       "css": {
         "classNames": {

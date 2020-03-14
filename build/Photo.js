@@ -163,21 +163,21 @@ export default class Photo extends Component {
       // ok
     }
     return (h(Copy,{error:error, hasInput:hasInput, processing:processing, src:src, uploaded:uploaded},
-      h('div',{'position-relative':true,'w-100':true,'h-100':true,'className':'Image'},
+      h('div',{'className':'Image position-relative w-100 h-100'},
         !src &&
-          h('span',{'position-absolute':true,'text-center':true,'className':'PreviewLoadingSpan'},
+          h('span',{'className':'PreviewLoadingSpan position-absolute text-center'},
             LOCALE.previewLoading,`...`
           ),
-        h('img',{'src':src,'mw-100':true,'mh-100':true}),
+        h('img',{'src':src,'className':'mw-100 mh-100'}),
         h('span',{'style':"top:0;left:0;",'className':'ImageInfo'},
           name,
           date && h('br'),
           date,
         ),
-        h('span',{'onClick':onRemove,'overflow-hidden':true,'text-center':true,'className':'ImageInfo CloseSpan'},`✕`),
+        h('span',{'onClick':onRemove,'className':'ImageInfo CloseSpan overflow-hidden text-center'},`✕`),
         !result && !error && progress === null &&
-          h(BottomLeft,{style:"background:transparent;",'pl-0':true},
-            h('a',{'onClick':this.uploadHandle,'btn':true,'btn-light':true,'btn-sm':true},
+          h(BottomLeft,{style:"background:transparent;",className:'pl-0'},
+            h('a',{'onClick':this.uploadHandle,'className':'btn btn-light btn-sm'},
               LOCALE.upload,
             ),
           )
@@ -187,14 +187,14 @@ export default class Photo extends Component {
         ),
         processing && h(BottomLeft,{},
           LOCALE.serverProcessing,h(Ellipsis),
-          h('div',{'spinner-border':true,'text-primary':true,'role':"status"},
-            h('span',{'sr-only':true},`Loading...`),
+          h('div',{'role':"status",'className':'spinner-border text-primary'},
+            h('span',{'className':'sr-only'},`Loading...`),
           ),
         ),
         error && h('p',{'className':'ImageInfo PhotoError'},
           LOCALE.error,`: `,error,
         ),
-        error && h('a',{'onClick':this.uploadHandle,'href':"#",'btn':true,'btn-danger':true,'btn-sm':true,'position-absolute':true,'style':"right:0;bottom:0;"},LOCALE.uploadAgain),
+        error && h('a',{'onClick':this.uploadHandle,'href':"#",'style':"right:0;bottom:0;",'className':'btn btn-danger btn-sm position-absolute'},LOCALE.uploadAgain),
         result &&
           h('p',{'className':'ImageInfo GalleryLink'},
             h('a',{'href':result,'rel':"noopener noreferrer",'target':"_blank"},LOCALE.link),
@@ -227,13 +227,13 @@ const Copy = ({ children, processing, error, hasInput, uploaded, src }) => {
     ...(src ? [] : [$PreviewLoading]),
   ].join(' ')
 
-  return (h('div',{'className':cl, 'd-inline-block':true},
+  return (h('div',{'className':cl+' d-inline-block'},
     children,
   ))
 }
 
 const BottomLeft = ({ children, style = '', className = $ImageInfo }) => {
-  return (h('span',{'className':className, 'style':`bottom:0;left:0;${style}`, 'position-absolute':true},
+  return (h('span',{'className':className+' position-absolute', 'style':`bottom:0;left:0;${style}`},
     children,
   ))
 }
