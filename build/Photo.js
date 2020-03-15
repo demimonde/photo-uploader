@@ -7,9 +7,9 @@ import {
   $PreviewLoading,
   $ImageInfo,
   $ImageCopy,
-} from './styles/closure.css'
-import { $Added, $Uploading, $Error, $HasInput, $Uploaded } from './styles/closure.css'
-import './styles/closure.css'
+} from './closure/stylesheet.css'
+import { $Added, $Uploading, $Error, $HasInput, $Uploaded } from './closure/stylesheet.css'
+import './closure/stylesheet.css'
 
 /**
  * Creates a canvas from the image.
@@ -163,7 +163,7 @@ export default class Photo extends Component {
       // ok
     }
     return (h(Copy,{error:error, hasInput:hasInput, processing:processing, src:src, uploaded:uploaded},
-      h('div',{'className':'pu-g position-relative w-100 h-100'},
+      h('div',{'className':'pu-l position-relative w-100 h-100'},
         !src &&
           h('span',{'className':'pu-f position-absolute text-center'},
             LOCALE.previewLoading,`...`
@@ -174,7 +174,7 @@ export default class Photo extends Component {
           date && h('br'),
           date,
         ),
-        h('span',{'onClick':onRemove,'className':'pu-a pu-h overflow-hidden text-center'},`✕`),
+        h('span',{'onClick':onRemove,'className':'pu-a pu-m overflow-hidden text-center'},`✕`),
         !result && !error && progress === null &&
           h(BottomLeft,{style:"background:transparent;",className:'pl-0'},
             h('a',{'onClick':this.uploadHandle,'className':'btn btn-light btn-sm'},

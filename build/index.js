@@ -2,7 +2,7 @@ import { h } from 'preact'
 import { Component } from 'preact'
 import { RU_LOCALE, EN_LOCALE } from './locale'
 import Photo from './Photo'
-import './styles/closure.css'
+import './closure/stylesheet.css'
 
 const loc = {
   'RU_LOCALE': RU_LOCALE,

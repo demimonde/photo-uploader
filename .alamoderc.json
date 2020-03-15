@@ -15,20 +15,13 @@
           "to": "$1/closure.css"
         }
       },
+      "closure": {
+        "cssRenamingPrefix": "pu-",
+        "rootSelector": ".PhotoUploader"
+      },
       "jsx": {
         "prop2class": true,
-        "classNames": "example/bootstrap.json",
-        "renameMaps": "src/styles/closure.json"
-      },
-      "css": {
-        "classNames": {
-          "styles/closure.css": "src/styles/closure.json"
-        },
-        "closure": {
-          "cssRenamingPrefix": "pu-",
-          "rootSelector": ".PhotoUploader",
-          "whitelist": ["PhotoUploader"]
-        }
+        "classNames": "example/bootstrap.json"
       }
     }
   }
