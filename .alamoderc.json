@@ -23,6 +23,11 @@
       "css": {
         "classNames": {
           "styles/closure.css": "src/styles/closure.json"
+        },
+        "closure": {
+          "cssRenamingPrefix": "pu-",
+          "rootSelector": ".PhotoUploader",
+          "whitelist": ["PhotoUploader"]
         }
       }
     }

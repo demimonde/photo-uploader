@@ -14,7 +14,7 @@
     "compile": "depack src/depack -o compile/photo-uploader.js -a -H -E -i",
     "lint": "eslint .",
     "doc": "doc -o README.md -d -a -n _photoUploader",
-    "b": "alamode src -o build -j -p --env build",
+    "b": "alamode src -o build -j -p -i depack.jsx --env build",
     "d": "yarn-s d1 externs",
     "d1": "typal src/index.jsx src/locale.js -c",
     "build": "yarn-s d b doc",
@@ -53,17 +53,17 @@
     "@externs/preact": "^1.3.1",
     "@idio/hot-reload": "^1.0.0",
     "@idio/idio": "^1.6.2",
-    "alamode": "3.6.0",
+    "alamode": "3.7.1",
     "closure-stylesheets": "^1.0.1",
     "depack": "^1.1.2",
     "documentary": "1.37.1",
     "eslint-config-artdeco": "1.0.1",
+    "node-watch": "^0.6.3",
     "preact": "8.5.3",
     "yarn-s": "1.2.3",
     "zoroaster": "4.3.0"
   },
   "dependencies": {
-    "@metadata/exif": "^1.0.0",
-    "node-watch": "^0.6.3"
+    "@metadata/exif": "^1.0.0"
   }
 }
