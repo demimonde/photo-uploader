@@ -11,6 +11,7 @@ import {
 import { $Added, $Uploading, $Error, $HasInput, $Uploaded } from './closure/stylesheet.css'
 import './closure/stylesheet.css'
 
+
 /**
  * Creates a canvas from the image.
  * @param {string} width

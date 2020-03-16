@@ -1,5 +1,6 @@
 import core, { render } from '@idio/idio'
-import classNames from './bootstrap'
+import classNames from '@a-la/bootstrap/bootstrap/bootstrap.json'
+import renameMap from '@a-la/bootstrap/bootstrap/camel.json'
 
 (async () => {
   const { url } = await core({
@@ -7,6 +8,7 @@ import classNames from './bootstrap'
       jsxOptions: {
         prop2class: true,
         classNames, // bootstrap classnames
+        renameMap,
       },
       hotReload: true,
     },

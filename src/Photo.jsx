@@ -9,6 +9,7 @@ import {
 } from './styles/style.css'
 import { $Added, $Uploading, $Error, $HasInput, $Uploaded } from './styles/photo.css'
 import './styles/image.css'
+import '@a-la/bootstrap/preact'
 
 /**
  * Creates a canvas from the image.
@@ -176,7 +177,7 @@ export default class Photo extends Component {
         <span ImageInfo CloseSpan onClick={onRemove} overflow-hidden text-center>✕</span>
         {!result && !error && progress === null &&
           <BottomLeft style="background:transparent;" pl-0>
-            <a btn btn-light btn-sm onClick={this.uploadHandle}>
+            <a btn btnLight btn-sm onClick={this.uploadHandle}>
               {LOCALE.upload}
             </a>
           </BottomLeft>

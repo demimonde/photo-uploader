@@ -9,19 +9,13 @@
       }
     },
     "build": {
-      "import": {
-        "replacement": {
-          "from": "^(.+)/(.+).css$",
-          "to": "$1/closure.css"
-        }
-      },
       "closure": {
         "cssRenamingPrefix": "pu-",
         "rootSelector": ".PhotoUploader"
       },
       "jsx": {
         "prop2class": true,
-        "classNames": "example/bootstrap.json"
+        "bootstrap": true
       }
     }
   }
